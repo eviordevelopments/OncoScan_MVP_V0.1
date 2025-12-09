@@ -6,8 +6,8 @@ const Button = forwardRef(({ className, variant = 'default', size = 'default', a
   
   const variants = {
     default: 'bg-[#0F3F96] text-white hover:bg-[#0C2D5C]',
-    outline: 'border border-gray-300 bg-white hover:bg-gray-50 text-[#0C2D5C]',
-    ghost: 'hover:bg-gray-100 text-[#0C2D5C]',
+    outline: 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-700',
+    ghost: 'hover:bg-gray-100 text-gray-700',
   };
 
   const sizes = {
@@ -20,7 +20,7 @@ const Button = forwardRef(({ className, variant = 'default', size = 'default', a
   return (
     <Comp
       className={cn(
-        'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+        'inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
         variants[variant],
         sizes[size],
         className

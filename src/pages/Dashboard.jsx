@@ -26,18 +26,17 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-[#0C2D5C]">Dashboard</h1>
-          <p className="text-[#9CA3AF] mt-1">Thyroid nodule screening & malignancy risk assessment</p>
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600 mt-1">Thyroid nodule screening & malignancy risk assessment</p>
         </div>
-        <Button 
-          asChild
-          className="bg-[#0F3F96] hover:bg-[#0C2D5C] text-white shadow-lg"
-        >
-          <Link to={createPageUrl('NewCase')}>
-            <Plus className="w-5 h-5 mr-2" />
-            New Case
-          </Link>
-        </Button>
+        <Link to="/new-case">
+          <Button 
+            className="bg-[#0F3F96] hover:bg-[#0C2D5C] text-white shadow-lg h-12 px-6 text-base font-semibold transition-all hover:scale-105 flex items-center gap-2 whitespace-nowrap"
+          >
+            <Plus className="w-5 h-5" />
+            <span>Create New Case</span>
+          </Button>
+        </Link>
       </div>
 
       {/* Quick Stats */}

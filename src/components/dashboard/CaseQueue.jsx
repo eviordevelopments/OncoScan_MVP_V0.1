@@ -33,8 +33,8 @@ export default function CaseQueue({ cases = [], isLoading = false }) {
   return (
     <GlassCard padding="default">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-[#0C2D5C]">Case Queue</h2>
-        <span className="text-sm text-[#9CA3AF]">{cases.length} cases</span>
+        <h2 className="text-lg font-semibold text-gray-900">Case Queue</h2>
+        <span className="text-sm text-gray-600">{cases.length} cases</span>
       </div>
 
       <div className="overflow-x-auto">

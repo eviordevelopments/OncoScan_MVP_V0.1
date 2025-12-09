@@ -12,9 +12,9 @@ const GlassCard = forwardRef(({ children, padding = 'default', hover = false, cl
     <div
       ref={ref}
       className={cn(
-        'bg-white/70 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl',
+        'bg-white/70 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl transition-all duration-300',
         paddingClasses[padding],
-        hover && 'transition-all hover:shadow-xl hover:scale-[1.02] cursor-pointer',
+        hover && 'hover:shadow-xl hover:scale-[1.03] cursor-pointer',
         className
       )}
       {...props}
