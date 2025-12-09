@@ -4,7 +4,6 @@ import { Toaster } from 'sonner';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Layout from './components/layout/Layout';
-import PatientLayout from './components/layout/PatientLayout';
 
 // Auth Pages
 import Login from './pages/auth/Login';
@@ -46,16 +45,18 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
-            {/* Clinician Routes */}
+            {/* Protected Routes with Layout */}
             <Route
               path="/"
               element={
-                <ProtectedRoute allowedRoles={['clinician', 'doctor', 'admin']}>
-                  <Layout />
+                <ProtectedRoute>
+                  <LayoutWrapper />
                 </ProtectedRoute>
               }
             >
               <Route index element={<Navigate to="/dashboard" replace />} />
+              
+              {/* Clinician Routes */}
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="new-case" element={<NewCase />} />
               <Route path="analysis" element={<Analysis />} />
@@ -64,22 +65,15 @@ function App() {
               <Route path="devices" element={<DeviceManager />} />
               <Route path="settings" element={<Settings />} />
               <Route path="help" element={<Help />} />
-            </Route>
-
-            {/* Patient Routes */}
-            <Route
-              path="/patient"
-              element={
-                <ProtectedRoute allowedRoles={['patient']}>
-                  <PatientLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate to="/patient/portal" replace />} />
-              <Route path="portal" element={<PatientPortal />} />
-              <Route path="reports" element={<PatientReports />} />
-              <Route path="report" element={<PatientReport />} />
-              <Route path="education" element={<Education />} />
+              
+              {/* Patient Routes */}
+              <Route path="patient">
+                <Route index element={<Navigate to="/patient/portal" replace />} />
+                <Route path="portal" element={<PatientPortal />} />
+                <Route path="reports" element={<PatientReports />} />
+                <Route path="report" element={<PatientReport />} />
+                <Route path="education" element={<Education />} />
+              </Route>
             </Route>
 
             {/* Fallback */}
@@ -90,6 +84,32 @@ function App() {
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
+  );
+}
+
+// Wrapper to pass current page name to Layout
+function LayoutWrapper() {
+  const location = window.location.pathname;
+  const pageName = location.split('/').pop() || 'Dashboard';
+  const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1).replace(/-/g, ' ');
+  
+  return (
+    <Layout currentPageName={formattedPageName}>
+      <Routes>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="new-case" element={<NewCase />} />
+        <Route path="analysis" element={<Analysis />} />
+        <Route path="report" element={<Report />} />
+        <Route path="cases" element={<CaseArchive />} />
+        <Route path="devices" element={<DeviceManager />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="help" element={<Help />} />
+        <Route path="patient/portal" element={<PatientPortal />} />
+        <Route path="patient/reports" element={<PatientReports />} />
+        <Route path="patient/report" element={<PatientReport />} />
+        <Route path="patient/education" element={<Education />} />
+      </Routes>
+    </Layout>
   );
 }
 
