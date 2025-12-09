@@ -87,30 +87,9 @@ function App() {
   );
 }
 
-// Wrapper to pass current page name to Layout
+// Wrapper component for Layout
 function LayoutWrapper() {
-  const location = window.location.pathname;
-  const pageName = location.split('/').pop() || 'Dashboard';
-  const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1).replace(/-/g, ' ');
-  
-  return (
-    <Layout currentPageName={formattedPageName}>
-      <Routes>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="new-case" element={<NewCase />} />
-        <Route path="analysis" element={<Analysis />} />
-        <Route path="report" element={<Report />} />
-        <Route path="cases" element={<CaseArchive />} />
-        <Route path="devices" element={<DeviceManager />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="help" element={<Help />} />
-        <Route path="patient/portal" element={<PatientPortal />} />
-        <Route path="patient/reports" element={<PatientReports />} />
-        <Route path="patient/report" element={<PatientReport />} />
-        <Route path="patient/education" element={<Education />} />
-      </Routes>
-    </Layout>
-  );
+  return <Layout />;
 }
 
 export default App;

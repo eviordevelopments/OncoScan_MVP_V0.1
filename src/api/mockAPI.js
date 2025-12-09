@@ -7,9 +7,28 @@
  * TODO: Replace with actual Supabase/Backend integration
  */
 
-// Mock data storage
+// Mock data storage with demo users
 const mockDB = {
-  users: [],
+  users: [
+    {
+      id: 'user-1',
+      email: 'doctor@oncoscan.ai',
+      password: 'demo123',
+      full_name: 'Dr. Sarah Johnson',
+      role: 'clinician',
+      specialty: 'Endocrinology',
+      created_at: '2024-01-01T00:00:00Z',
+    },
+    {
+      id: 'user-2',
+      email: 'patient@example.com',
+      password: 'demo123',
+      full_name: 'John Smith',
+      role: 'patient',
+      date_of_birth: '1985-06-15',
+      created_at: '2024-01-15T00:00:00Z',
+    },
+  ],
   cases: [],
   auditLogs: [],
   devices: [],
