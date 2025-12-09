@@ -170,6 +170,38 @@
     }
   }
 
+  /* Print mode class for hiding sidebar and other elements */
+  body.print-mode nav,
+  body.print-mode .sidebar,
+  body.print-mode header,
+  body.print-mode .print\\:hidden,
+  body.print-mode [data-sidebar],
+  body.print-mode aside {
+    display: none !important;
+  }
+  
+  body.print-mode {
+    background: white !important;
+  }
+  
+  body.print-mode .min-h-screen {
+    min-height: auto !important;
+  }
+  
+  @media print {
+    nav, .sidebar, header, aside, [data-sidebar] {
+      display: none !important;
+    }
+    
+    body {
+      background: white !important;
+    }
+    
+    .min-h-screen {
+      min-height: auto !important;
+    }
+  }
+
   /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;

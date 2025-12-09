@@ -149,6 +149,16 @@ export default function Report() {
 
   const isFinalized = caseData.report_status === 'final';
 
+  const handleExportPDF = () => {
+    const filename = `OncoScan_Report_${caseData.case_number}.pdf`;
+    document.body.classList.add('print-mode');
+    const originalTitle = document.title;
+    document.title = filename;
+    window.print();
+    document.title = originalTitle;
+    document.body.classList.remove('print-mode');
+  };
+
   return (
     <div className="space-y-4">
       {/* Header */}
@@ -174,7 +184,7 @@ export default function Report() {
             <Printer className="w-4 h-4 mr-2" />
             Print
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={handleExportPDF}>
             <Download className="w-4 h-4 mr-2" />
             Export PDF
           </Button>
@@ -197,7 +207,13 @@ export default function Report() {
       </div>
 
       {/* Report Content */}
-      <ReportView caseData={caseData} />
+      <ReportView 
+        caseData={{
+          ...caseData,
+          radiologist_notes: radiologistNotes,
+          recommendations: selectedRecommendations
+        }} 
+      />
 
       {/* Radiologist Notes & Recommendations - Only show if not finalized */}
       {!isFinalized && (

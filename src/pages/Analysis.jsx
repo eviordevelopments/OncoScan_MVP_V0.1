@@ -106,14 +106,12 @@ export default function Analysis() {
           </div>
         </div>
         
-        <div className="flex items-center gap-2">
-          <Button variant="outline" asChild>
-            <Link to={createPageUrl(`Report?id=${caseId}`)}>
-              <FileText className="w-4 h-4 mr-2" />
-              View Report
-            </Link>
-          </Button>
-        </div>
+        <Button variant="outline" asChild>
+          <Link to={createPageUrl(`Report?id=${caseId}`)} className="flex items-center">
+            <FileText className="w-4 h-4 mr-2" />
+            View Report
+          </Link>
+        </Button>
       </div>
 
       {/* Case Info Bar */}

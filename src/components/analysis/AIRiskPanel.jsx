@@ -95,9 +95,8 @@ export default function AIRiskPanel({
           <div className="flex items-center gap-2">
             <h3 className="text-lg font-semibold text-gray-900">AI Risk Assessment</h3>
             <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 rounded-md">
-              <svg className="w-3.5 h-3.5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="4" y="4" width="16" height="16" rx="2" />
-                <path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01" />
+              <svg className="w-3.5 h-3.5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 3h12l4 6-10 13L2 9l4-6z" />
               </svg>
               <span className="text-xs font-semibold text-gray-700">v1.0</span>
             </div>
