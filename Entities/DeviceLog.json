@@ -1,0 +1,71 @@
+{
+  "name": "DeviceLog",
+  "type": "object",
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "description": "Associated device ID"
+    },
+    "log_type": {
+      "type": "string",
+      "enum": [
+        "connection",
+        "disconnection",
+        "error",
+        "warning",
+        "info",
+        "case_upload",
+        "calibration",
+        "firmware_update",
+        "maintenance",
+        "configuration_change"
+      ],
+      "description": "Type of log entry"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "info"
+      ],
+      "default": "info",
+      "description": "Log severity level"
+    },
+    "message": {
+      "type": "string",
+      "description": "Log message"
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Additional log details as JSON"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "User associated with this log entry"
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the issue has been resolved"
+    },
+    "resolved_by": {
+      "type": "string",
+      "description": "User who resolved the issue"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Resolution timestamp"
+    }
+  },
+  "required": [
+    "device_id",
+    "log_type",
+    "message"
+  ]
+}
+

@@ -367,15 +367,17 @@ export default function ReportView({ caseData }) {
         </div>
       )}
 
-      {/* Footer */}
-      <div className="p-6 bg-gray-100 border-t border-gray-200">
-        <p className="text-xs text-center text-gray-600">
-          <span className="font-semibold text-red-600">FDA Notice:</span>{' '}
-          OncoScan AI™ is a screening aid only. Final diagnosis must be rendered by a qualified radiologist.
-        </p>
-        <p className="text-xs text-center text-gray-500 mt-2">
-          OncoScan AI™ | 123 Medical Center Drive, Suite 100 | Phone: (555) 123-4567
-        </p>
+      {/* Footer - FDA Disclaimer */}
+      <div className="p-6 bg-gray-100 border-t border-gray-200 print:bg-white print:border-gray-400">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs text-center text-gray-800 font-medium print:text-black">
+            <span className="font-bold text-red-600 print:text-black">FDA Notice:</span>{' '}
+            OncoScan AI™ is a screening aid only. Final diagnosis must be rendered by a qualified radiologist.
+          </p>
+          <p className="text-xs text-center text-gray-600 mt-2 print:text-black">
+            OncoScan AI™ | 123 Medical Center Drive, Suite 100 | Phone: (555) 123-4567
+          </p>
+        </div>
       </div>
     </div>
   );

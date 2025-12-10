@@ -1,0 +1,125 @@
+{
+  "name": "Device",
+  "type": "object",
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "description": "Unique device identifier (e.g., OSD-2025-001)"
+    },
+    "device_name": {
+      "type": "string",
+      "description": "Human-readable device name"
+    },
+    "serial_number": {
+      "type": "string",
+      "description": "Manufacturer serial number"
+    },
+    "model": {
+      "type": "string",
+      "default": "OncoScan Edge v1.0",
+      "description": "Device model"
+    },
+    "location": {
+      "type": "string",
+      "description": "Physical location of device"
+    },
+    "department": {
+      "type": "string",
+      "description": "Hospital department"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline",
+        "error",
+        "maintenance",
+        "calibrating"
+      ],
+      "default": "offline",
+      "description": "Current device status"
+    },
+    "connection_type": {
+      "type": "string",
+      "enum": [
+        "ethernet",
+        "wifi",
+        "cellular"
+      ],
+      "default": "ethernet",
+      "description": "Network connection type"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Device IP address"
+    },
+    "firmware_version": {
+      "type": "string",
+      "description": "Current firmware version"
+    },
+    "last_calibration": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last calibration timestamp"
+    },
+    "next_calibration_due": {
+      "type": "string",
+      "format": "date",
+      "description": "Next scheduled calibration date"
+    },
+    "last_heartbeat": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last connectivity check timestamp"
+    },
+    "total_cases_processed": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of cases processed"
+    },
+    "pending_upload_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of cases pending upload"
+    },
+    "storage_used_gb": {
+      "type": "number",
+      "description": "Storage used in GB"
+    },
+    "storage_total_gb": {
+      "type": "number",
+      "description": "Total storage capacity in GB"
+    },
+    "assigned_users": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of user emails with access to this device"
+    },
+    "api_key_hash": {
+      "type": "string",
+      "description": "Hashed API key for secure authentication"
+    },
+    "encryption_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether data transfer is encrypted"
+    },
+    "auto_upload": {
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically upload cases after acquisition"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes about this device"
+    }
+  },
+  "required": [
+    "device_id",
+    "device_name",
+    "serial_number"
+  ]
+}
+

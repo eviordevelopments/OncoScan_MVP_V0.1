@@ -33,7 +33,60 @@ const mockDB = {
   auditLogs: [],
   devices: [],
   deviceLogs: [],
-  educationContent: [],
+  educationContent: [
+    {
+      id: 'edu-1',
+      title: 'Understanding Thyroid Nodules: A Patient Guide',
+      category: 'nodules_basics',
+      summary: 'Learn what thyroid nodules are, how common they are, and what they mean for your health.',
+      content: '# Understanding Thyroid Nodules\n\nThyroid nodules are small lumps that form within your thyroid gland. Most nodules are benign (non-cancerous) and don\'t cause symptoms.\n\n## What are thyroid nodules?\n\nThyroid nodules are very common, especially as we age. They can be:\n- Solid or filled with fluid\n- Single or multiple\n- Small or large\n\n## Should I be worried?\n\nMost thyroid nodules are benign. Only about 5% of thyroid nodules are cancerous. Your doctor will evaluate your nodule using ultrasound and may recommend additional tests if needed.',
+      author: 'OncoScan Medical Team',
+      published_date: '2024-01-15',
+      reading_time_minutes: 5,
+      tags: ['thyroid', 'nodules', 'basics', 'health'],
+      featured: true,
+      thumbnail_url: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400'
+    },
+    {
+      id: 'edu-2',
+      title: 'What is TI-RADS? Understanding Your Ultrasound Results',
+      category: 'tirads_explained',
+      summary: 'TI-RADS is a standardized system used to evaluate thyroid nodules. Learn what your TI-RADS score means.',
+      content: '# Understanding TI-RADS\n\nTI-RADS (Thyroid Imaging Reporting and Data System) is a standardized way to describe thyroid nodules seen on ultrasound.\n\n## TI-RADS Categories:\n\n**TI-RADS 1:** Normal thyroid\n**TI-RADS 2:** Benign nodules\n**TI-RADS 3:** Probably benign\n**TI-RADS 4:** Suspicious nodules\n**TI-RADS 5:** Highly suspicious for malignancy\n\n## What does this mean for me?\n\nYour doctor uses TI-RADS to determine if additional testing is needed and to plan follow-up care.',
+      author: 'Dr. Sarah Johnson',
+      published_date: '2024-01-10',
+      reading_time_minutes: 7,
+      tags: ['tirads', 'ultrasound', 'diagnosis', 'classification'],
+      featured: true,
+      thumbnail_url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400'
+    },
+    {
+      id: 'edu-3',
+      title: 'Thyroid Health and Nutrition: What You Need to Know',
+      category: 'lifestyle_nutrition',
+      summary: 'Discover how nutrition and lifestyle choices can support your thyroid health.',
+      content: '# Thyroid Health and Nutrition\n\nYour thyroid needs specific nutrients to function properly. Here\'s what you should know:\n\n## Important Nutrients:\n\n**Iodine:** Essential for thyroid hormone production\n**Selenium:** Helps protect the thyroid\n**Zinc:** Supports thyroid function\n**Iron:** Needed for thyroid hormone synthesis\n\n## Foods to Include:\n- Seafood and seaweed (iodine)\n- Brazil nuts (selenium)\n- Lean meats and legumes (zinc and iron)\n- Dairy products (iodine)\n\n## Lifestyle Tips:\n- Manage stress levels\n- Get adequate sleep\n- Exercise regularly\n- Avoid smoking',
+      author: 'OncoScan Nutrition Team',
+      published_date: '2024-01-05',
+      reading_time_minutes: 8,
+      tags: ['nutrition', 'lifestyle', 'thyroid health', 'prevention'],
+      featured: true,
+      thumbnail_url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400'
+    },
+    {
+      id: 'edu-4',
+      title: 'Frequently Asked Questions About Thyroid Nodules',
+      category: 'faq',
+      summary: 'Get answers to the most common questions patients have about thyroid nodules.',
+      content: '# Frequently Asked Questions\n\n## Q: How common are thyroid nodules?\nA: Very common! Up to 50% of people have thyroid nodules by age 50.\n\n## Q: Do thyroid nodules cause symptoms?\nA: Most don\'t cause symptoms. Large nodules might cause difficulty swallowing or breathing.\n\n## Q: Will I need surgery?\nA: Most nodules don\'t require surgery. Your doctor will monitor benign nodules with regular ultrasounds.\n\n## Q: Can thyroid nodules be prevented?\nA: There\'s no proven way to prevent thyroid nodules, but maintaining good thyroid health through proper nutrition may help.\n\n## Q: How often should I have follow-up ultrasounds?\nA: This depends on your nodule\'s characteristics. Your doctor will create a personalized follow-up plan.',
+      author: 'OncoScan Medical Team',
+      published_date: '2024-01-01',
+      reading_time_minutes: 6,
+      tags: ['faq', 'questions', 'thyroid nodules', 'patient education'],
+      featured: false,
+      thumbnail_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=400'
+    }
+  ],
 };
 
 // Helper to generate IDs

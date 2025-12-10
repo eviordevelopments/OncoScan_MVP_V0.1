@@ -1,0 +1,44 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "Related case ID"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "case_created",
+        "image_uploaded",
+        "analysis_complete",
+        "tirads_saved",
+        "report_signed",
+        "report_exported",
+        "case_archived",
+        "status_changed"
+      ],
+      "description": "Type of action performed"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "User who performed the action"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "User full name"
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional details about the action"
+    },
+    "model_version": {
+      "type": "string",
+      "description": "AI model version if applicable"
+    }
+  },
+  "required": [
+    "action",
+    "user_email"
+  ]
+}

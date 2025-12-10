@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import GlassCard from '@/components/common/GlassCard';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -10,7 +11,9 @@ import {
   Crop,
   Maximize2,
   RotateCw,
-  Filter
+  Filter,
+  X,
+  Expand
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -29,6 +32,7 @@ export default function ImageViewer({
   const [activeTool, setActiveTool] = useState(null); // 'pan', 'ruler', 'crop'
   const [rulerPoints, setRulerPoints] = useState([]);
   const [xrayFilter, setXrayFilter] = useState(false);
+  const [showFullscreen, setShowFullscreen] = useState(false);
   const imageRef = useRef(null);
 
   const handlePrevious = () => {
@@ -172,6 +176,14 @@ export default function ImageViewer({
           >
             <Maximize2 className="w-4 h-4" />
           </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowFullscreen(true)}
+            title="Fullscreen View"
+          >
+            <Expand className="w-4 h-4" />
+          </Button>
           <div className="w-px h-6 bg-gray-300 mx-1" />
           <Button
             variant={xrayFilter ? 'default' : 'ghost'}
@@ -287,6 +299,64 @@ export default function ImageViewer({
           <ChevronRight className="w-4 h-4 ml-1" />
         </Button>
       </div>
+
+      {/* Fullscreen Modal */}
+      <Dialog open={showFullscreen} onOpenChange={setShowFullscreen}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0">
+          <div className="relative w-full h-full bg-black">
+            {/* Close Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowFullscreen(false)}
+              className="absolute top-4 right-4 z-10 bg-black/50 text-white hover:bg-black/70"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+            
+            {/* Navigation */}
+            {images.length > 1 && (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handlePrevious}
+                  disabled={activeIndex === 0}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleNext}
+                  disabled={activeIndex === images.length - 1}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </Button>
+              </>
+            )}
+            
+            {/* Image Counter */}
+            <div className="absolute top-4 left-4 z-10 bg-black/50 text-white px-3 py-1 rounded-lg text-sm">
+              {activeIndex + 1} / {images.length}
+            </div>
+            
+            {/* Fullscreen Image */}
+            <div className="w-full h-full flex items-center justify-center p-4">
+              <img
+                src={images[activeIndex]}
+                alt={`Medical image ${activeIndex + 1}`}
+                className="max-w-full max-h-full object-contain"
+                style={{
+                  filter: xrayFilter ? 'invert(1) hue-rotate(180deg) contrast-150 brightness-110' : 'none'
+                }}
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </GlassCard>
   );
 }

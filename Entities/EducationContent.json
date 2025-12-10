@@ -1,0 +1,71 @@
+{
+  "name": "EducationContent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "understanding_thyroid",
+        "nodules_basics",
+        "tirads_explained",
+        "treatment_options",
+        "lifestyle_nutrition",
+        "diagnostic_tests",
+        "faq"
+      ],
+      "description": "Content category"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief summary of the content"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full article content (markdown supported)"
+    },
+    "author": {
+      "type": "string",
+      "description": "Content author or source"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date"
+    },
+    "reading_time_minutes": {
+      "type": "number",
+      "description": "Estimated reading time"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Content tags for search"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show on featured list"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "description": "Article thumbnail image"
+    },
+    "external_link": {
+      "type": "string",
+      "description": "Optional external resource URL"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "summary",
+    "content"
+  ]
+}
+

@@ -71,6 +71,8 @@ export default function Report() {
     }
   });
 
+  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+
   const signReportMutation = useMutation({
     mutationFn: async () => {
       await base44.entities.Case.update(caseId, {
@@ -92,10 +94,17 @@ export default function Report() {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['case', caseId] });
-      queryClient.invalidateQueries({ queryKey: ['cases'] });
-      setShowSignDialog(false);
-      toast.success('Report signed and finalized');
+      // Show success animation
+      setShowSuccessAnimation(true);
+      
+      // Hide dialog after animation
+      setTimeout(() => {
+        setShowSignDialog(false);
+        setShowSuccessAnimation(false);
+        queryClient.invalidateQueries({ queryKey: ['case', caseId] });
+        queryClient.invalidateQueries({ queryKey: ['cases'] });
+        toast.success('Report signed and finalized');
+      }, 2000);
     }
   });
 
@@ -287,49 +296,89 @@ export default function Report() {
       {/* Sign Dialog */}
       <Dialog open={showSignDialog} onOpenChange={setShowSignDialog}>
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Sign & Finalize Report</DialogTitle>
-            <DialogDescription>
-              By signing this report, you confirm that you have reviewed all findings and the AI assessment. 
-              The report will be locked and cannot be edited after signing.
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="py-4">
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-4">
-              <p className="text-sm text-amber-800">
-                <strong>Note:</strong> This action cannot be undone. Please ensure all information is accurate before signing.
-              </p>
+          {showSuccessAnimation ? (
+            <div className="text-center py-8">
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                {/* Animated Circle */}
+                <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    stroke="#10B981"
+                    strokeWidth="4"
+                    fill="none"
+                    strokeDasharray="283"
+                    strokeDashoffset="283"
+                    className="animate-[draw-circle_1s_ease-out_forwards]"
+                  />
+                </svg>
+                {/* Animated Checkmark */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg className="w-12 h-12 text-emerald-500" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M9 12l2 2 4-4"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray="12"
+                      strokeDashoffset="12"
+                      className="animate-[draw-check_0.5s_ease-out_0.5s_forwards]"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-emerald-600 mb-2">Report Signed Successfully!</h3>
+              <p className="text-gray-600">The report has been finalized and locked.</p>
             </div>
-            
-            <div className="text-sm text-[#9CA3AF]">
-              <p>Signing as: <span className="text-[#0C2D5C] font-medium">{user?.full_name || user?.email}</span></p>
-              <p>Date: <span className="text-[#0C2D5C] font-medium">{new Date().toLocaleString()}</span></p>
-            </div>
-          </div>
-          
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowSignDialog(false)}>
-              Cancel
-            </Button>
-            <Button 
-              onClick={() => signReportMutation.mutate()}
-              disabled={signReportMutation.isPending}
-              className="bg-[#0F3F96] hover:bg-[#0C2D5C]"
-            >
-              {signReportMutation.isPending ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Signing...
-                </>
-              ) : (
-                <>
-                  <FileSignature className="w-4 h-4 mr-2" />
-                  Sign Report
-                </>
-              )}
-            </Button>
-          </DialogFooter>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle>Sign & Finalize Report</DialogTitle>
+                <DialogDescription>
+                  By signing this report, you confirm that you have reviewed all findings and the AI assessment. 
+                  The report will be locked and cannot be edited after signing.
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="py-4">
+                <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-4">
+                  <p className="text-sm text-amber-800">
+                    <strong>Note:</strong> This action cannot be undone. Please ensure all information is accurate before signing.
+                  </p>
+                </div>
+                
+                <div className="text-sm text-[#9CA3AF]">
+                  <p>Signing as: <span className="text-[#0C2D5C] font-medium">{user?.full_name || user?.email}</span></p>
+                  <p>Date: <span className="text-[#0C2D5C] font-medium">{new Date().toLocaleString()}</span></p>
+                </div>
+              </div>
+              
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setShowSignDialog(false)}>
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={() => signReportMutation.mutate()}
+                  disabled={signReportMutation.isPending}
+                  className="bg-[#0F3F96] hover:bg-[#0C2D5C]"
+                >
+                  {signReportMutation.isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Signing...
+                    </>
+                  ) : (
+                    <>
+                      <FileSignature className="w-4 h-4 mr-2" />
+                      Sign Report
+                    </>
+                  )}
+                </Button>
+              </DialogFooter>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>

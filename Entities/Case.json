@@ -1,0 +1,172 @@
+{
+  "name": "Case",
+  "type": "object",
+  "properties": {
+    "case_number": {
+      "type": "string",
+      "description": "Unique case identifier (e.g., CASE-2025-001)"
+    },
+    "patient_id": {
+      "type": "string",
+      "description": "Pseudonymized patient ID (e.g., PAT-XXXX-1234)"
+    },
+    "exam_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the ultrasound examination"
+    },
+    "nodule_location": {
+      "type": "string",
+      "enum": [
+        "right_lobe",
+        "left_lobe",
+        "isthmus",
+        "bilateral"
+      ],
+      "description": "Location of the thyroid nodule"
+    },
+    "indication": {
+      "type": "string",
+      "enum": [
+        "screening",
+        "routine_followup",
+        "symptomatic",
+        "other"
+      ],
+      "description": "Reason for the examination"
+    },
+    "clinical_notes": {
+      "type": "string",
+      "description": "Optional clinical notes"
+    },
+    "referring_physician": {
+      "type": "string",
+      "description": "Name of referring physician"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Assigned radiologist email"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "awaiting_review",
+        "completed",
+        "flagged",
+        "archived"
+      ],
+      "default": "processing",
+      "description": "Current case status"
+    },
+    "image_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs of uploaded ultrasound images"
+    },
+    "prediction_confidence": {
+      "type": "number",
+      "description": "AI malignancy confidence percentage (0-100)"
+    },
+    "risk_category": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "description": "AI-predicted risk category"
+    },
+    "tirads_category": {
+      "type": "number",
+      "description": "TI-RADS category (1-5)"
+    },
+    "tirads_points": {
+      "type": "number",
+      "description": "Total TI-RADS points"
+    },
+    "tirads_composition": {
+      "type": "string",
+      "enum": [
+        "cystic",
+        "spongiform",
+        "mixed",
+        "solid"
+      ]
+    },
+    "tirads_echogenicity": {
+      "type": "string",
+      "enum": [
+        "anechoic",
+        "hyperechoic",
+        "isoechoic",
+        "hypoechoic",
+        "very_hypoechoic"
+      ]
+    },
+    "tirads_shape": {
+      "type": "string",
+      "enum": [
+        "wider_than_tall",
+        "taller_than_wide"
+      ]
+    },
+    "tirads_margin": {
+      "type": "string",
+      "enum": [
+        "smooth",
+        "ill_defined",
+        "lobulated",
+        "extrathyroidal"
+      ]
+    },
+    "tirads_foci": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Selected echogenic foci"
+    },
+    "radiologist_notes": {
+      "type": "string",
+      "description": "Radiologist clinical notes"
+    },
+    "report_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "final"
+      ],
+      "default": "draft"
+    },
+    "signed_by": {
+      "type": "string",
+      "description": "Radiologist who signed the report"
+    },
+    "signed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Selected clinical recommendations"
+    },
+    "nodule_size_long": {
+      "type": "number",
+      "description": "Long axis measurement in mm"
+    },
+    "nodule_size_short": {
+      "type": "number",
+      "description": "Short axis measurement in mm"
+    }
+  },
+  "required": [
+    "case_number",
+    "patient_id"
+  ]
+}
