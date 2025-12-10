@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import Logo from '@/components/common/Logo';
 import StatusBadge from '@/components/common/StatusBadge';
 import { 
   AlertTriangle,
@@ -43,7 +42,29 @@ export default function ReportView({ caseData }) {
       <div className="p-8 border-b-4 border-[#0F3F96]">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <Logo size="large" showText={true} />
+            {/* OncoScan Logo */}
+            <div className="flex items-center gap-2 mb-2">
+              <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3C7CE3"/>
+                    <stop offset="100%" stopColor="#0F3F96"/>
+                  </linearGradient>
+                  <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#E85B6C"/>
+                    <stop offset="100%" stopColor="#D4273E"/>
+                  </linearGradient>
+                </defs>
+                <path d="M15 35C15 20 25 15 35 15C45 15 50 25 50 45C50 55 45 70 40 80C35 85 25 85 20 75C15 65 15 50 15 35Z" fill="url(#blueGrad)"/>
+                <path d="M85 35C85 20 75 15 65 15C55 15 50 25 50 45C50 55 55 70 60 80C65 85 75 85 80 75C85 65 85 50 85 35Z" fill="url(#redGrad)"/>
+                <ellipse cx="50" cy="45" rx="8" ry="12" fill="#0C2D5C" opacity="0.3"/>
+              </svg>
+              <div className="font-semibold text-2xl">
+                <span className="text-[#0C2D5C]">Onco</span>
+                <span className="text-[#D4273E]">Scan</span>
+                <span className="text-[#0F3F96] text-xs ml-1 font-normal">AI™</span>
+              </div>
+            </div>
             <p className="text-sm text-gray-600 mt-2">Thyroid Screening & Malignancy Risk Assessment</p>
             <p className="text-xs text-gray-500">123 Medical Center Drive, Suite 100</p>
             <p className="text-xs text-gray-500">Phone: (555) 123-4567 | Fax: (555) 123-4568</p>
@@ -171,7 +192,7 @@ export default function ReportView({ caseData }) {
           <div className="col-span-1 text-center">
             <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-8 border-red-500 bg-white">
               <div>
-                <div className="text-4xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900">
                   {(caseData.prediction_confidence || 96.6).toFixed(1)}%
                 </div>
                 <div className="text-xs text-gray-600">Malignancy</div>
