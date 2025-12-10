@@ -43,26 +43,20 @@ export default function ReportView({ caseData }) {
         <div className="flex items-start justify-between mb-6">
           <div>
             {/* OncoScan Logo */}
-            <div className="flex items-center gap-2 mb-2">
-              <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3C7CE3"/>
-                    <stop offset="100%" stopColor="#0F3F96"/>
-                  </linearGradient>
-                  <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#E85B6C"/>
-                    <stop offset="100%" stopColor="#D4273E"/>
-                  </linearGradient>
-                </defs>
-                <path d="M15 35C15 20 25 15 35 15C45 15 50 25 50 45C50 55 45 70 40 80C35 85 25 85 20 75C15 65 15 50 15 35Z" fill="url(#blueGrad)"/>
-                <path d="M85 35C85 20 75 15 65 15C55 15 50 25 50 45C50 55 55 70 60 80C65 85 75 85 80 75C85 65 85 50 85 35Z" fill="url(#redGrad)"/>
-                <ellipse cx="50" cy="45" rx="8" ry="12" fill="#0C2D5C" opacity="0.3"/>
-              </svg>
-              <div className="font-semibold text-2xl">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 relative bg-white rounded-lg p-1 shadow-sm">
+                {/* Fallback image for print */}
+                <img 
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJibHVlR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzQzdDRTMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMEYzRjk2Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJyZWRHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U4NUI2QyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNENDI3M0UiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik0xNSAzNUMxNSAyMCAyNSAxNSAzNSAxNUM0NSAxNSA1MCAyNSA1MCA0NUM1MCA1NSA0NSA3MCA0MCA4MEMzNSA4NSAyNSA4NSAyMCA3NUMxNSA2NSAxNSA1MCAxNSAzNVoiIGZpbGw9InVybCgjYmx1ZUdyYWQpIiBzdHJva2U9IiMwRjNGOTYiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxwYXRoIGQ9Ik04NSAzNUM4NSAyMCA3NSAxNSA2NSAxNUM1NSAxNSA1MCAyNSA1MCA0NUM1MCA1NSA1NSA3MCA2MCA4MEM2NSA4NSA3NSA4NSA4MCA3NUM4NSA2NSA4NSA1MCA4NSAzNVoiIGZpbGw9InVybCgjcmVkR3JhZCkiIHN0cm9rZT0iI0Q0MjczRSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGVsbGlwc2UgY3g9IjUwIiBjeT0iNDUiIHJ4PSI4IiByeT0iMTIiIGZpbGw9IiMwQzJENUMiIG9wYWNpdHk9IjAuNCIvPgogIDxlbGxpcHNlIGN4PSIzNSIgY3k9IjMwIiByeD0iMyIgcnk9IjUiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyIvPgogIDxlbGxpcHNlIGN4PSI2NSIgY3k9IjMwIiByeD0iMyIgcnk9IjUiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyIvPgo8L3N2Zz4="
+                  alt="OncoScan AI Logo"
+                  className="w-full h-full object-contain"
+                  style={{ printColorAdjust: 'exact' }}
+                />
+              </div>
+              <div className="font-bold text-2xl">
                 <span className="text-[#0C2D5C]">Onco</span>
                 <span className="text-[#D4273E]">Scan</span>
-                <span className="text-[#0F3F96] text-xs ml-1 font-normal">AI™</span>
+                <span className="text-[#0F3F96] text-sm ml-1 font-normal">AI™</span>
               </div>
             </div>
             <p className="text-sm text-gray-600 mt-2">Thyroid Screening & Malignancy Risk Assessment</p>
