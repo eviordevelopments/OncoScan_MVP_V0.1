@@ -221,7 +221,7 @@ export default function NewCase() {
                     className="border-emerald-300 text-emerald-700 hover:bg-emerald-100"
                     asChild
                   >
-                    <Link to={createPageUrl('DeviceManager')}>
+                    <Link to="/devices">
                       View Devices & Import
                     </Link>
                   </Button>
