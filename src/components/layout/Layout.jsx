@@ -45,7 +45,7 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50">
       {/* Sidebar */}
-      <div className="w-64 bg-white/70 backdrop-blur-md border-r border-gray-200 flex flex-col">
+      <div className="sidebar w-64 bg-white/70 backdrop-blur-md border-r border-gray-200 flex flex-col print:hidden">
         {/* Logo */}
         <div className="p-6 border-b border-gray-200">
           <Logo size="default" showText={true} />
@@ -98,7 +98,7 @@ export default function Layout({ children }) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="h-16 bg-white/70 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-6">
+        <header className="h-16 bg-white/70 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-6 print:hidden">
           <div />
           
           <div className="flex items-center gap-4">
@@ -130,7 +130,7 @@ export default function Layout({ children }) {
         </main>
 
         {/* FDA Disclaimer Footer */}
-        <footer className="border-t border-gray-200 bg-white/70 backdrop-blur-md px-6 py-3">
+        <footer className="border-t border-gray-200 bg-white/70 backdrop-blur-md px-6 py-3 print:hidden">
           <p className="text-xs text-center">
             <span className="font-semibold text-red-600">FDA Notice:</span>{' '}
             <span className="text-gray-700">OncoScan AI™ is a screening aid only. Final diagnosis must be rendered by a qualified radiologist.</span>

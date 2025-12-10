@@ -171,34 +171,105 @@
   }
 
   /* Print mode class for hiding sidebar and other elements */
+  body.print-mode,
+  html.print-mode {
+    background: white !important;
+    overflow: visible !important;
+  }
+  
+  /* Hide all UI elements in print mode */
   body.print-mode nav,
   body.print-mode .sidebar,
   body.print-mode header,
+  body.print-mode footer,
   body.print-mode .print\\:hidden,
   body.print-mode [data-sidebar],
-  body.print-mode aside {
+  body.print-mode aside,
+  body.print-mode > div > div:first-child,
+  html.print-mode nav,
+  html.print-mode .sidebar,
+  html.print-mode header,
+  html.print-mode footer,
+  html.print-mode aside {
     display: none !important;
+    visibility: hidden !important;
   }
   
-  body.print-mode {
-    background: white !important;
+  /* Show only the report content */
+  body.print-mode main,
+  html.print-mode main {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
-  body.print-mode .min-h-screen {
+  body.print-mode .min-h-screen,
+  html.print-mode .min-h-screen {
     min-height: auto !important;
   }
   
+  /* Ensure report content takes full width */
+  body.print-mode .space-y-4,
+  html.print-mode .space-y-4 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
   @media print {
-    nav, .sidebar, header, aside, [data-sidebar] {
+    /* Hide all navigation and UI elements */
+    nav, 
+    .sidebar, 
+    header, 
+    footer,
+    aside, 
+    [data-sidebar],
+    .print\\:hidden,
+    body > div > div:first-child {
       display: none !important;
+      visibility: hidden !important;
     }
     
-    body {
+    /* Reset body and html */
+    html, body {
       background: white !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* Ensure main content is visible and full width */
+    main {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
     
     .min-h-screen {
       min-height: auto !important;
+    }
+    
+    /* Ensure report takes full width */
+    .space-y-4 {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Page breaks */
+    .page-break-before {
+      page-break-before: always !important;
+    }
+    
+    .page-break-after {
+      page-break-after: always !important;
+    }
+    
+    .page-break-inside-avoid {
+      page-break-inside: avoid !important;
     }
   }
 

@@ -108,7 +108,16 @@ export default function Report() {
   };
 
   const handlePrint = () => {
+    // Add print-mode class to hide sidebar and UI elements
+    document.body.classList.add('print-mode');
+    
+    // Trigger print
     window.print();
+    
+    // Remove print-mode class after print dialog closes
+    setTimeout(() => {
+      document.body.classList.remove('print-mode');
+    }, 1000);
   };
 
   const recommendationOptions = [
@@ -150,13 +159,29 @@ export default function Report() {
   const isFinalized = caseData.report_status === 'final';
 
   const handleExportPDF = () => {
+    // Create filename with case number
     const filename = `OncoScan_Report_${caseData.case_number}.pdf`;
+    
+    // Add print-mode class to hide all UI elements
     document.body.classList.add('print-mode');
+    document.documentElement.classList.add('print-mode');
+    
+    // Change document title to desired filename
     const originalTitle = document.title;
     document.title = filename;
-    window.print();
-    document.title = originalTitle;
-    document.body.classList.remove('print-mode');
+    
+    // Add a small delay to ensure styles are applied
+    setTimeout(() => {
+      // Trigger print dialog (user can save as PDF)
+      window.print();
+      
+      // Restore original state after print dialog
+      setTimeout(() => {
+        document.title = originalTitle;
+        document.body.classList.remove('print-mode');
+        document.documentElement.classList.remove('print-mode');
+      }, 500);
+    }, 100);
   };
 
   return (
@@ -184,7 +209,11 @@ export default function Report() {
             <Printer className="w-4 h-4 mr-2" />
             Print
           </Button>
-          <Button variant="outline" onClick={handleExportPDF}>
+          <Button 
+            variant="outline" 
+            onClick={handleExportPDF}
+            title="Opens print dialog - select 'Save as PDF' as destination"
+          >
             <Download className="w-4 h-4 mr-2" />
             Export PDF
           </Button>
